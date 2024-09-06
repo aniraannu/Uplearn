@@ -1,0 +1,11 @@
+{
+  "name": "uplearn",
+  "version": "1.0.0",
+  "description": "Uplearn is an innovative e-learning platform designed to provide personilized learning experience for users across various application, Uplearn offers interactive courses, real-time progress tracking, and a dynamic content delivery system. ## Description Uplearn is an interactive learning platform where users can browse, enroll in, and complete skill-based courses. The  platform integrates user-friendly interfaces with backend scalability, ensuring seamless access to educational materials, assesments, and a collaborative learning tools. Uplearn aims to empower learners with flexible, on-demand education tailored to their pace and learning style, making knowledge more accessible and engaging to all.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
