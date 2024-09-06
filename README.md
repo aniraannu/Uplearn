@@ -26,14 +26,19 @@ NA
 Contributors names and contact info
 Amrinderjeet Kaur
 [@AJKaur]https://github.com/AJKaur02
+
 Anira Raveendran
 [@aniraannu](https://github.com/aniraannu)
+
 Jose Arambula
 [@daimyo1]https://github.com/daimyo1
+
 Robel
 [@Robel11A]https://github.com/Robel11A
+
 Saima Yunus
 [@saimayunus925]https://github.com/saimayunus925
+
 Urie Williams
 [@urie-w]https://github.com/urie-w
 
