@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const authRoute = require('./routes/authroute');
-const protectedT = require('./routes/protectedT');
+const auth = require('./server/routes/auth');
+const protectedT = require('./server/routes/protectedT');
 
 //Enviroment variable
 dotenv.config();
@@ -13,11 +13,11 @@ const app = express();
 app.use(express.json());
 
 //Routes
-app.use('/api/auth', authRoute);
-app.use('/api/protected', protectedT);
+app.use('/server/routes/auth.js', auth);
+app.use('/server/routes/protectedT.js', protectedT);
 
 //Connect to MongoDB
-mongoose.connect(process.env.MONGO_URL)
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => {
     console.log('Connected to MongoDB');
 })
