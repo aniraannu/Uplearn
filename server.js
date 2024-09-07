@@ -12,12 +12,15 @@ const app = express();
 //Middleware for incoming JSON data
 app.use(express.json());
 
+//Defined mongoURI
+const mongoURI = process.env.MONGO_URI;
+
 //Routes
 app.use('/server/routes/auth.js', auth);
 app.use('/server/routes/protectedT.js', protectedT);
 
 //Connect to MongoDB
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(mongoURI)
 .then(() => {
     console.log('Connected to MongoDB');
 })
