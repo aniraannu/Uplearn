@@ -1,6 +1,8 @@
 const express = require('express');
+//Import the connection to the MongoDB database
 const db = require('./config/connection');
 const routes = require('./routes');
+//Require the mongoose package
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const auth = require('./server/routes/auth');
@@ -8,8 +10,9 @@ const protectedT = require('./server/routes/protectedT');
 
 //Enviroment variable
 dotenv.config();
-
+//Define the port
 const PORT = process.env.PORT || 5000;
+//Call a instance of express
 const app = express();
 
 //Middleware for incoming POST data
