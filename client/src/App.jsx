@@ -1,35 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { Box, Flex, Heading, Link as ChakraLink } from '@chakra-ui/react';
+import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Welcome to UpLearn</h1>
-      <div className="app-container">
-        {/* <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button> */}
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-          Empowering learners with flexible, on-demand education.
-      </p>
-    </>
-  )
+    <Router>
+      <Box>
+        <Flex as="header" p={4} bg="teal.500" color="white" justifyContent="space-between" alignItems="center">
+          <Heading size="lg">UpLearn</Heading>
+          <Flex as="nav">
+            <ChakraLink as={Link} to="/" px={4}>Home</ChakraLink>
+            <ChakraLink as={Link} to="/dashboard" px={4}>Dashboard</ChakraLink>
+          </Flex>
+        </Flex>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </Box>
+    </Router>
+  );
 }
 
-export default App
+export default App;
+
