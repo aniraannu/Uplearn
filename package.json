@@ -1,9 +1,12 @@
 {
   "name": "uplearn",
   "version": "1.0.0",
-  "description": "Uplearn is an innovative e-learning platform designed to provide personilized learning experience for users across various application, Uplearn offers interactive courses, real-time progress tracking, and a dynamic content delivery system. ## Description Uplearn is an interactive learning platform where users can browse, enroll in, and complete skill-based courses. The  platform integrates user-friendly interfaces with backend scalability, ensuring seamless access to educational materials, assesments, and a collaborative learning tools. Uplearn aims to empower learners with flexible, on-demand education tailored to their pace and learning style, making knowledge more accessible and engaging to all.",
+  "description": "Uplearn is an innovative e-learning platform designed to provide a personalized learning experience for users across various applications. Uplearn offers interactive courses, real-time progress tracking, and a dynamic content delivery system. Uplearn aims to empower learners with flexible, on-demand education tailored to their pace and learning style, making knowledge more accessible and engaging to all.",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon server/schemas/index.js",
+    "start": "node server/schemas/index.js",
+    "build": "echo \"Build command not defined\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -12,9 +15,11 @@
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "graphql": "16.9.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.6.1",
-    "nodemon": "^2.0.20",
-    "graphql": "16.9.0"
+    "mongoose": "^8.6.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
   }
 }
