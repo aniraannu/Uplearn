@@ -1,11 +1,7 @@
-const express = require('express');
-const app = express();
-const port = process.env.PORT || 3000;
+const typeDefs = require("./typeDefs");
+const resolvers = require("./resolvers");
 
-app.get('/', (req, res) => {
-  res.send('UpLearn is running!');
-});
-
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+module.exports = {
+  typeDefs,
+  resolvers,
+};

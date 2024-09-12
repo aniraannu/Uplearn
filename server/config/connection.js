@@ -1,8 +1,8 @@
 //Import Mongoose
-const { connect, connection } = require('mongoose');
+const mongoose = require("mongoose");
 //Connection string
-const connectionString = 'mongodb://127.0.0.1:27017/eplatformDB';
-//connect to MongoDB
-connect(connectionString);
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/eplatformDB"
+);
 //Export connection
-module.exports = connection;
+module.exports = mongoose.connection;

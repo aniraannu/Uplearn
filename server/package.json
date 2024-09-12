@@ -4,15 +4,23 @@
   "description": "Uplearn is an innovative e-learning platform designed to provide a personalized learning experience for users across various applications. Uplearn offers interactive courses, real-time progress tracking, and a dynamic content delivery system. Uplearn aims to empower learners with flexible, on-demand education tailored to their pace and learning style, making knowledge more accessible and engaging to all.",
   "main": "server.js",
   "scripts": {
-    "start": "node server/server.js",
-    "dev": "concurrently \"cd server && npm run watch\" \"cd client && npm run dev\"",
-    "install": "cd server && npm i && cd ../client && npm i",
-    "seed": "cd server && npm run seed",
-    "build": "cd client && npm run build"
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "build": "echo \"Build command not defined\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^4.11.0",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "graphql": "16.9.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.6.1"
+  },
   "devDependencies": {
-    "concurrently": "^5.3.0"
+    "nodemon": "^3.1.4"
   }
 }
