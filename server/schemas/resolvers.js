@@ -48,6 +48,7 @@ const resolvers = {
         throw new Error("Error fetching the lessons");
       }
     },
+  },
 
     Mutation: {
       //Create a new user
@@ -104,6 +105,6 @@ const resolvers = {
         }
       },
     },
-  },
-};
+  };
+
 module.exports = resolvers;
