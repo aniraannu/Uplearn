@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const courseSchema = new Schema({
+const courseSchema = new mongoose.Schema({
     title: { 
         type: String,
         required: true },
@@ -15,7 +15,8 @@ const courseSchema = new Schema({
             required: true
         },
         reviews: [{
-            type: Schema.Types.ObjectId, ref: 'Review'
+            type: Schema.Types.ObjectId, 
+            ref: 'Review'
         }],
         createdAt: {
             type: Date,
@@ -23,4 +24,6 @@ const courseSchema = new Schema({
         }
 });
 
-module.exports = mongoose.model('Course', courseSchema);
+const Course = mongoose.model('Course', courseSchema);
+
+module.exports = Course;
