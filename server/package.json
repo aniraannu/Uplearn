@@ -4,7 +4,7 @@
   "description": "Uplearn is an innovative e-learning platform designed to provide a personalized learning experience for users across various applications. Uplearn offers interactive courses, real-time progress tracking, and a dynamic content delivery system. Uplearn aims to empower learners with flexible, on-demand education tailored to their pace and learning style, making knowledge more accessible and engaging to all.",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
+    "watch": "nodemon server.js",
     "start": "node server.js",
     "build": "echo \"Build command not defined\"",
     "test": "echo \"Error: no test specified\" && exit 1"
