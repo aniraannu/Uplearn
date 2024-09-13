@@ -1,8 +1,16 @@
 import React from 'react';
 import { Box, Button, Container, Heading, Text, VStack } from '@chakra-ui/react';
 import CourseCard from '../components/CourseCard'; // Import the CourseCard component
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  const handleExploreCourses = () => {
+    navigate('/courses'); // Navigate to the /courses route
+  };
+
+
   return (
     <Box>
       <Box as="header" bg="brand.900" color="white" py={4}>
@@ -20,7 +28,7 @@ const Home = () => {
           <VStack spacing={4}>
             <Heading as="h2" size="2xl">Welcome to Uplearn</Heading>
             <Text fontSize="xl">Empowering learners with flexible, on-demand education.</Text>
-            <Button colorScheme="blue">Explore Courses</Button>
+            <Button colorScheme="blue" onClick = {handleExploreCourses} >Explore Courses</Button>
           </VStack>
         </Container>
       </Box>
