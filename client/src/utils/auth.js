@@ -13,8 +13,8 @@ loggedIn() {
 
 //Sees if token is expired
 isTokenExpired(token) {
-    const decode = decode(token);
-    if (decode.exp < Date.now() / 1000)  {
+    const decoded = decode(token);
+    if (decoded.exp < Date.now() / 1000)  {
         localStorage.removeItem('id_token');
         return true;
     }
