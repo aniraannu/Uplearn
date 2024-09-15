@@ -25,16 +25,41 @@ const startApolloServer = async () => {
   app.post('/register', async (req, res) => {
     try {
       const { username, password } = req.body;
-      const user = await User.findOne({ username });
-      if (!user || !(await user.isCorrectPassword(password))) {
-        return res.status(401).json({ message: 'Incorrect username or password' });
+
+      // Checking is username exists
+      const existingUser = await User.findOne({ username });
+      if (existingUser) {
+        return res.status(400).json({ message: 'Username already exists' });
       }
 
-      const token = signToken(user);
-      res.json({ token, user });
+      // Create a new user
+      const newUser = await User.create({ username, password });
+      const token = signToken(newUser);
+      res.json({ token, user: newUser });
     } catch (err) {
       res.status(500).json(err);
     }
+  });
+
+  //REST endpoint for user login
+  app.post('/login', async (req, res) => {
+    try {
+      const { username, password } = req.body;
+    
+      // Find the user by username
+      const user = await User.findOne({ username });
+
+      // If the user is not found or password is wrong
+      if (!user || !(await user.isCorrectPassword(password))) {
+        return res.status(400).json({ message: 'Invalid username or password' });
+       }
+
+       // If login is successful
+       const token = signToken(user);
+       res.json({ token, user });
+      } catch (err) {
+        res.status(500).json(err);
+      }
   });
 
   // GraphQL middleware
