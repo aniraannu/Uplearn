@@ -5,6 +5,8 @@ const path = require("path");
 
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
+const User = require("./models/User");
+const { signToken }  = require("./utils/auth");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -19,6 +21,23 @@ const startApolloServer = async () => {
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
 
+  // REST endpoint for user registration
+  app.post('/register', async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      const user = await User.findOne({ username });
+      if (!user || !(await user.isCorrectPassword(password))) {
+        return res.status(401).json({ message: 'Incorrect username or password' });
+      }
+
+      const token = signToken(user);
+      res.json({ token, user });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+  // GraphQL middleware
   app.use("/graphql", expressMiddleware(server));
 
   // if we're in production, serve client/dist as static assets
