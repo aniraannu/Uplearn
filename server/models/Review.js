@@ -1,22 +1,21 @@
 const { Schema, model } = require("mongoose");
-const bcrypt = require("bcrypt");
-const { Schema, model } = mongoose;
+// const bcrypt = require("bcrypt");
 
-//Method to compare the password for login
-userSchema.methods.comparePassword = function (password) {
-  return bcrypt.compare(password, this.password);
-};
+// //Method to compare the password for login
+// userSchema.methods.comparePassword = function (password) {
+//   return bcrypt.compare(password, this.password);
+// };
 
 
 //Review Schema
 const reviewSchema = new Schema({
   courseId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'Course',
     required: true
   },
   userId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
@@ -34,4 +33,4 @@ const reviewSchema = new Schema({
 //Export all models
 const Review = model("Review", reviewSchema);
 
-module.exports = { Review };
+module.exports = Review;
