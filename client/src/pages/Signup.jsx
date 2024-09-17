@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Box, Button, FormControl, FormLabel, Input, VStack, Heading, useToast } from '@chakra-ui/react';
+import { Box, Button, FormControl, FormLabel, Input, VStack, Heading, useToast, IconButton } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'; // Import icons for showing/hiding passwords
 
 const Signup = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState(''); // Changed from email to username
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const navigate = useNavigate(); // Initialize useNavigate hook
   const toast = useToast(); // Initialize useToast hook
 
@@ -13,7 +15,7 @@ const Signup = () => {
     e.preventDefault();
 
     // Basic validation to ensure fields are filled in
-    if (!email || !password || !confirmPassword) {
+    if (!username || !password || !confirmPassword) {
       toast({
         title: 'All fields are required.',
         status: 'error',
@@ -36,10 +38,10 @@ const Signup = () => {
     }
 
     // Add signup logic here
-    console.log('Signing up:', { email, password });
+    console.log('Signing up:', { username, password });
 
     // Save the user to localStorage or implement backend logic here
-    const newUser = { email, password };
+    const newUser = { username, password };
     localStorage.setItem('user', JSON.stringify(newUser));
 
     // shows a success message or delay navigation
@@ -77,33 +79,55 @@ const Signup = () => {
         <form onSubmit={handleSubmit}>
           <VStack spacing={4}>
             <FormControl isRequired>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Username</FormLabel>
               <Input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Enter your username"
               />
             </FormControl>
 
             <FormControl isRequired>
               <FormLabel>Password</FormLabel>
-              <Input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter your password"
-              />
+              <Box position="relative">
+                <Input
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter your password"
+                />
+                <IconButton
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  icon={showPassword ? <ViewOffIcon /> : <ViewIcon />}
+                  position="absolute"
+                  right="0"
+                  top="50%"
+                  transform="translateY(-50%)"
+                  onClick={() => setShowPassword(!showPassword)}
+                />
+              </Box>
             </FormControl>
 
             <FormControl isRequired>
               <FormLabel>Confirm Password</FormLabel>
-              <Input
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="Confirm your password"
-              />
+              <Box position="relative">
+                <Input
+                  type={showPassword ? 'text' : 'password'}
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder="Confirm your password"
+                />
+                <IconButton
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  icon={showPassword ? <ViewOffIcon /> : <ViewIcon />}
+                  position="absolute"
+                  right="0"
+                  top="50%"
+                  transform="translateY(-50%)"
+                  onClick={() => setShowPassword(!showPassword)}
+                />
+              </Box>
             </FormControl>
 
             <Button colorScheme="teal" type="submit" width="full">

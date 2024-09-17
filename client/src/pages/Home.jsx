@@ -25,9 +25,9 @@ const Home = () => {
 
   return (
     <Box>
-      <Box as="header" bg="brand.900" color="white" py={4}>
+      <Box as="header" bg="blue.900" color="white" py={4}>
         <Container maxW="container.lg" display="flex" justifyContent="space-between" alignItems="center">
-          <Heading as="h1">Uplearn</Heading>
+          <Heading as="h1"></Heading>
           {/* Show the logout button if the user is logged in */}
           {isLoggedIn && (
             <Button colorScheme="red" onClick={handleLogout}>
@@ -44,7 +44,7 @@ const Home = () => {
       >
         <Container maxW="container.md">
           <VStack spacing={4}>
-            <Heading as="h2" size="2xl">Welcome to Uplearn</Heading>
+            <Heading as="h2" size="2xl">Welcome to UpLearn</Heading>
             <Text fontSize="xl">Empowering learners with flexible, on-demand education.</Text>
             <Button colorScheme="blue" onClick={handleExploreCourses}>Explore Courses</Button>
           </VStack>
