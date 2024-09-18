@@ -3,7 +3,7 @@ import { Box, Button, Input, FormControl, FormLabel, Heading, VStack, useToast, 
 import { useNavigate } from 'react-router-dom';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
-const Login = () => {
+const Login = ({ setIsAuthenticated }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [shownPassword, setShownPassword] = useState(false);
@@ -11,13 +11,38 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    try {
-      // Add your login logic here
-      navigate('/dashboard');
-    } catch (error) {
+    if (!username || !password) {
+      toast({
+        title: 'Missing Credentials',
+        description: 'Please fill out both username and password.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    }
+
+    // Retrieve stored user credentials from localStorage
+    const storedUser = localStorage.getItem('user');
+    const parsedUser = storedUser ? JSON.parse(storedUser) : null;
+
+    // Check if the credentials match the stored user data
+    if (parsedUser && parsedUser.username === username && parsedUser.password === password) {
+      // Store the authentication status in localStorage so that the user stays logged in
+      localStorage.setItem('isAuthenticated', 'true');
+
+      setIsAuthenticated(true);  // Set authentication status to true
+      toast({
+        title: 'Login Successful!',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
+      navigate('/home');  // Redirect to the home page
+    } else {
       toast({
         title: 'Login Failed',
-        description: error.message || 'An error occurred. Please try again.',
+        description: 'Invalid username or password.',
         status: 'error',
         duration: 5000,
         isClosable: true,
@@ -26,58 +51,20 @@ const Login = () => {
   };
 
   return (
-    <Box
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      height="100vh"
-      padding={4}
-    >
-      <Box
-        maxW="md"
-        borderWidth={1}
-        borderRadius="md"
-        padding={6}
-        boxShadow="md"
-        bg="white"
-        width="100%"
-      >
+    <Box display="flex" alignItems="center" justifyContent="center" height="100vh" padding={4}>
+      <Box maxW="md" borderWidth={1} borderRadius="md" padding={6} boxShadow="md" bg="white" width="100%">
         <Heading mb={6}>Login</Heading>
         <VStack spacing={4}>
           <FormControl>
             <FormLabel>Username</FormLabel>
-            <Input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter your username"
-            />
+            <Input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Enter your username" />
           </FormControl>
           <FormControl>
             <FormLabel>Password</FormLabel>
-            <Input
-              type={shownPassword ? 'text' : 'password'}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-            />
-            <IconButton
-              aria-label={shownPassword ? 'Hide password' : 'Show password'}
-              icon={shownPassword ? <ViewOffIcon /> : <ViewIcon />}
-              onClick={() => setShownPassword(!shownPassword)}
-              position="absolute"
-              right={4}
-              top={-2}
-              size="sm"
-            />
+            <Input type={shownPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" />
+            <IconButton aria-label={shownPassword ? 'Hide password' : 'Show password'} icon={shownPassword ? <ViewOffIcon /> : <ViewIcon />} onClick={() => setShownPassword(!shownPassword)} position="absolute" right={0} top={9} size="sm" />
           </FormControl>
-          <Button
-            colorScheme="teal"
-            onClick={handleLogin}
-            isFullWidth
-          >
-            Login
-          </Button>
+          <Button colorScheme="teal" onClick={handleLogin} isFullWidth>Login</Button>
         </VStack>
       </Box>
     </Box>
