@@ -1,11 +1,22 @@
 import React from 'react';
-import { Box, Image, Text } from '@chakra-ui/react';
+import { Image, Text, Flex } from '@chakra-ui/react';
 
-const CourseCard = ({ title, image }) => (
-  <Box borderWidth={1} borderRadius="lg" overflow="hidden" p={4}>
-    <Image src={image} alt={title} />
-    <Text mt={2} fontWeight="bold">{title}</Text>
-  </Box>
-);
+const CourseCard = ({ title, image }) => {
+  return (
+    <Flex align="center" justify="flex-start" p={4}>
+      
+      <Image 
+        src={image} 
+        alt={title} 
+        boxSize="170px" 
+        objectFit="" 
+        borderRadius="full"  // Makes the image circular
+        mr={4} 
+      />
+     
+      <Text fontWeight="bold" fontSize="lg">{title}</Text>
+    </Flex>
+  );
+};
 
 export default CourseCard;

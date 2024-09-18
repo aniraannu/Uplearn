@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Container, Heading, Text, VStack } from '@chakra-ui/react';
+import { Box, Button, Container, Heading, Text, VStack, Grid, Flex } from '@chakra-ui/react';
 import CourseCard from '../components/CourseCard'; // Import the CourseCard component
 import { useNavigate } from 'react-router-dom';
 
@@ -28,12 +28,7 @@ const Home = () => {
       <Box as="header" bg="blue.900" color="white" py={4}>
         <Container maxW="container.lg" display="flex" justifyContent="space-between" alignItems="center">
           <Heading as="h1"></Heading>
-          {/* Show the logout button if the user is logged in */}
-          {isLoggedIn && (
-            <Button colorScheme="red" onClick={handleLogout}>
-              Logout
-            </Button>
-          )}
+          
         </Container>
       </Box>
       <Box
@@ -46,17 +41,54 @@ const Home = () => {
           <VStack spacing={4}>
             <Heading as="h2" size="2xl">Welcome to UpLearn</Heading>
             <Text fontSize="xl">Empowering learners with flexible, on-demand education.</Text>
-            <Button colorScheme="blue" onClick={handleExploreCourses}>Explore Courses</Button>
+            
           </VStack>
         </Container>
       </Box>
-      <Container maxW="container.lg" py={8}>
+
+      <Container maxW="container.lg" py={7}>
         <Heading as="h3" size="lg" mb={6}>Our Popular Courses</Heading>
-        <VStack spacing={4}>
-          <CourseCard title="Course 1" image="/assets/image1.jpg" />
-          <CourseCard title="Course 2" image="/assets/image2.jpg" />
-          {/* Add more CourseCard components as needed */}
-        </VStack>
+        
+      
+        <Grid templateColumns="repeat(3, 1fr)" gap={6}>
+        
+          <Flex justify="flex-start">
+            <CourseCard title="W3Schools" image="/image/W3SchoolLogo.png" />
+          </Flex>
+
+        
+          <Flex justify="center">
+            <CourseCard title="React" image="/image/react.png" />
+          </Flex>
+
+        
+          <Flex justify="flex-end">
+            <CourseCard title="NodeJS" image="/image/nodejs.png" />
+          </Flex>
+        </Grid>
+
+        
+        <Grid templateColumns="repeat(3, 1fr)" gap={6} py={4}>
+      
+          <Flex justify="flex-start">
+            <CourseCard title="JavaScript" image="/image/javascript.png" />
+          </Flex>
+
+        
+          <Flex justify="center">
+            <CourseCard title="MongoDB" image="/image/mongodb.png" />
+          </Flex>
+
+        
+          <Flex justify="flex-end">
+            <CourseCard title="CSS" image="/image/css.png" />
+          </Flex>
+        </Grid>
+
+        
+        <Flex justify="center" py={4}>
+          <CourseCard title="HTML" image="/image/HTML.png" />
+        </Flex>
       </Container>
     </Box>
   );
